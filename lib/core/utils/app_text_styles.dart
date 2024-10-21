@@ -1,0 +1,24 @@
+import 'package:flutter/material.dart';
+
+abstract class AppTextStyles {
+  static const TextStyle styleBold24 = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w700,
+  );
+  static const TextStyle styleBold16 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+  );
+  static const TextStyle styleBold19 = TextStyle(
+    fontSize: 19,
+    fontWeight: FontWeight.w700,
+  );
+  static const TextStyle styleBold14 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+  );
+  static const TextStyle styleRegular14 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+}
