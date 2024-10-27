@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasky/core/utils/app_colors.dart';
 
 abstract class AppTextStyles {
   static const TextStyle styleBold24 = TextStyle(
@@ -20,5 +21,6 @@ abstract class AppTextStyles {
   static const TextStyle styleRegular14 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w400,
+    color: AppColors.textGreyColor,
   );
 }
