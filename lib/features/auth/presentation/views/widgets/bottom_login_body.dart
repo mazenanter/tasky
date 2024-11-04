@@ -37,7 +37,9 @@ class BottomLoginBody extends StatelessWidget {
         CustomButton(
           buttonText: 'Sign In',
           height: height,
-          onPressed: () {},
+          onPressed: () {
+            context.go(AppRoutes.kHomeView);
+          },
         ),
         SizedBox(
           height: height * 0.024,

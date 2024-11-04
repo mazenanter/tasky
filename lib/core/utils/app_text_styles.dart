@@ -23,4 +23,8 @@ abstract class AppTextStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.textGreyColor,
   );
+  static const TextStyle styleMeduim12 = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+  );
 }
