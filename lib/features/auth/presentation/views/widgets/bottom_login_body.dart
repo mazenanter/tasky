@@ -26,11 +26,17 @@ class BottomLoginBody extends StatelessWidget {
         SizedBox(
           height: height * 0.024,
         ),
-        const CustomTextFormField(),
+        CustomTextFormField(
+          controller: TextEditingController(),
+          hintText: '123 456-7890',
+        ),
         SizedBox(
           height: height * 0.020,
         ),
-        const CustomTextFormField(),
+        CustomTextFormField(
+          controller: TextEditingController(),
+          hintText: 'Password...',
+        ),
         SizedBox(
           height: height * 0.024,
         ),
