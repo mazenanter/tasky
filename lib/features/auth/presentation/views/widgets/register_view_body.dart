@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +11,7 @@ import 'package:tasky/core/utils/app_colors.dart';
 import 'package:tasky/core/utils/app_routes.dart';
 import 'package:tasky/core/utils/app_text_styles.dart';
 import 'package:tasky/core/widgets/custom_button.dart';
+import 'package:tasky/core/widgets/snack_bar.dart';
 import 'package:tasky/features/auth/data/models/register_model.dart';
 import 'package:tasky/features/auth/data/repos/repo_impl.dart';
 import 'package:tasky/features/auth/presentation/manager/regitser_cubit/register_cubit.dart';
@@ -28,12 +31,16 @@ class RegisterViewBody extends StatelessWidget {
       child: BlocConsumer<RegisterCubit, RegisterState>(
         listener: (context, state) {
           if (state is RegisterSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.authModel.displayName),
-              ),
+            successSnackbar(
+              context,
+              'register successfilly',
             );
             context.go(AppRoutes.kLoginView);
+          } else if (state is RegisterError) {
+            errorSnackBar(
+              context,
+              state.errMsg,
+            );
           }
         },
         builder: (context, state) {
@@ -170,6 +177,8 @@ class RegisterViewBody extends StatelessWidget {
                                         ),
                                       );
                                     }
+                                    log(controller.countryCode! +
+                                        controller.phoneController.text);
                                   }),
                             ),
                             SizedBox(

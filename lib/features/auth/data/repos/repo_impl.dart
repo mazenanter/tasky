@@ -18,6 +18,7 @@ class RegitserRepoImpl extends RegisterRepo {
         endPoint: '/auth/register',
         data: registerModel.toJson(),
       );
+
       AuthModel authModel = AuthModel.fromJson(response);
       return right(authModel);
     } catch (e) {

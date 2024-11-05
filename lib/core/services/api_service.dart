@@ -11,17 +11,10 @@ class ApiService {
     required String endPoint,
     required Map<String, dynamic> data,
   }) async {
-    try {
-      final response = await dio.post(
-        '$baseUrl$endPoint',
-        data: data,
-      );
-
-      return response.data;
-    } on DioException catch (e) {
-      return {'error': 'Request failed: ${e.message}'};
-    } catch (e) {
-      return {'error': 'Unexpected error'};
-    }
+    final response = await dio.post(
+      '$baseUrl$endPoint',
+      data: data,
+    );
+    return response.data;
   }
 }
