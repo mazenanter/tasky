@@ -14,6 +14,10 @@ abstract class AppTextStyles {
     fontSize: 19,
     fontWeight: FontWeight.w700,
   );
+  static const TextStyle styleBold18 = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+  );
   static const TextStyle styleBold14 = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w700,

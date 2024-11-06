@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tasky/core/utils/app_colors.dart';
+import 'package:tasky/core/utils/app_routes.dart';
 import 'package:tasky/core/utils/app_text_styles.dart';
 import 'package:tasky/features/home/presentation/views/widgets/home_view_body.dart';
 
@@ -18,7 +20,9 @@ class HomeView extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              GoRouter.of(context).push(AppRoutes.kProfileView);
+            },
             icon: const Icon(
               Icons.person_3_outlined,
             ),

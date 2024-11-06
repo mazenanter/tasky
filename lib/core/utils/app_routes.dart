@@ -4,12 +4,14 @@ import 'package:tasky/features/auth/presentation/views/register_view.dart';
 import 'package:tasky/features/home/presentation/views/home_view.dart';
 import 'package:tasky/features/intro/views/onboard_view.dart';
 import 'package:tasky/features/intro/views/splash_view.dart';
+import 'package:tasky/features/profile/presentation/views/profile_view.dart';
 
 class AppRoutes {
   static const String kOnboardView = '/kOnboardView';
   static const String kLoginView = '/kLoginView';
   static const String kRegisterView = '/kRegisterView';
   static const String kHomeView = '/kHomeView';
+  static const String kProfileView = '/kProfileView';
   static final GoRouter router = GoRouter(
     routes: [
       GoRoute(
@@ -31,6 +33,10 @@ class AppRoutes {
       GoRoute(
         path: kHomeView,
         builder: (context, state) => const HomeView(),
+      ),
+      GoRoute(
+        path: kProfileView,
+        builder: (context, state) => const ProfileView(),
       ),
     ],
   );
