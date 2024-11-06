@@ -5,8 +5,10 @@ class InfoItem extends StatelessWidget {
   const InfoItem({
     super.key,
     required this.title,
+    required this.value,
   });
   final String title;
+  final String value;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,7 +34,7 @@ class InfoItem extends StatelessWidget {
               height: 4,
             ),
             Text(
-              'Islam Sayed',
+              value,
               style: AppTextStyles.styleBold18.copyWith(
                 color: Colors.black54,
               ),

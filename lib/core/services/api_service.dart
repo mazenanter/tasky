@@ -17,4 +17,19 @@ class ApiService {
     );
     return response.data;
   }
+
+  Future<Map<String, dynamic>> getRequest({
+    required String endPoint,
+    required String accessToken,
+  }) async {
+    final response = await dio.get(
+      '$baseUrl$endPoint',
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $accessToken',
+        },
+      ),
+    );
+    return response.data;
+  }
 }

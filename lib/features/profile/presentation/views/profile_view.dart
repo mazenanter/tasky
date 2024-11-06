@@ -20,7 +20,7 @@ class ProfileView extends StatelessWidget {
           style: AppTextStyles.styleBold16,
         ),
       ),
-      body: const ProfileViewBody(),
+      body: ProfileViewBody(),
     );
   }
 }

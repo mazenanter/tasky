@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tasky/core/func/valid_inputs.dart';
 import 'package:tasky/core/services/api_service.dart';
+import 'package:tasky/core/services/secure_storage.dart';
 import 'package:tasky/core/utils/app_routes.dart';
 import 'package:tasky/core/utils/app_text_styles.dart';
 import 'package:tasky/core/widgets/custom_button.dart';
@@ -31,10 +32,12 @@ class BottomLoginBody extends StatelessWidget {
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccess) {
+            SecureStorage().saveAccessToken(state.authModel.accessToken);
             successSnackbar(
               context,
               'login successfully',
             );
+
             context.go(AppRoutes.kHomeView);
           } else if (state is LoginError) {
             errorSnackBar(

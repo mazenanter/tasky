@@ -13,8 +13,8 @@ class AuthModel {
     return AuthModel(
       id: json['_id'],
       displayName: json['displayName'],
-      accessToken: json['accessToken'],
-      refreshToken: json['refreshToken'],
+      accessToken: json['access_token'],
+      refreshToken: json['refresh_token'],
     );
   }
 }
