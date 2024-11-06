@@ -3,7 +3,7 @@ import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:tasky/features/auth/data/models/auth_model.dart';
 import 'package:tasky/features/auth/data/models/register_model.dart';
-import 'package:tasky/features/auth/data/repos/register_repo.dart';
+import 'package:tasky/features/auth/data/repos/repo.dart';
 
 part 'register_state.dart';
 

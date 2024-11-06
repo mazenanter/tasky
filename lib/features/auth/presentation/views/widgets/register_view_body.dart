@@ -7,10 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tasky/core/func/valid_inputs.dart';
 import 'package:tasky/core/services/api_service.dart';
-import 'package:tasky/core/utils/app_colors.dart';
 import 'package:tasky/core/utils/app_routes.dart';
 import 'package:tasky/core/utils/app_text_styles.dart';
 import 'package:tasky/core/widgets/custom_button.dart';
+import 'package:tasky/core/widgets/custom_indicator.dart';
 import 'package:tasky/core/widgets/snack_bar.dart';
 import 'package:tasky/features/auth/data/models/register_model.dart';
 import 'package:tasky/features/auth/data/repos/repo_impl.dart';
@@ -147,11 +147,7 @@ class RegisterViewBody extends StatelessWidget {
                             ),
                             ConditionalBuilder(
                               condition: state is RegisterLoading,
-                              builder: (context) => const Center(
-                                  child: CircularProgressIndicator(
-                                backgroundColor: Colors.white,
-                                color: AppColors.primaryColor,
-                              )),
+                              builder: (context) => const CustomIndicator(),
                               fallback: (context) => CustomButton(
                                   buttonText: 'Sign up',
                                   height: height,
