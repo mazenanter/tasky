@@ -32,6 +32,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   dartz: ^0.10.1
   dio: ^5.7.0
+  dropdown_button2: ^2.3.9
   dropdown_textfield: ^1.2.0
   flutter:
     sdk: flutter

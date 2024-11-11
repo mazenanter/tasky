@@ -55,7 +55,9 @@ class HomeView extends StatelessWidget {
             heroTag: 'mainFab',
             backgroundColor: AppColors.primaryColor,
             shape: const CircleBorder(),
-            onPressed: () {},
+            onPressed: () {
+              GoRouter.of(context).push(AppRoutes.kAddTaskView);
+            },
             child: const Icon(
               Icons.add,
               color: Colors.white,
