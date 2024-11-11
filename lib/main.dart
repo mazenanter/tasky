@@ -5,6 +5,7 @@ import 'package:tasky/core/services/api_service.dart';
 import 'package:tasky/core/services/bloc_observer.dart';
 import 'package:tasky/core/utils/app_routes.dart';
 import 'package:tasky/features/home/data/repo/home_repo_impl.dart';
+import 'package:tasky/features/home/presentation/manager/add_task_cubit/add_task_cubit.dart';
 import 'package:tasky/features/home/presentation/manager/home_cubit/home_cubit.dart';
 
 void main() {
@@ -17,8 +18,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeCubit(HomeRepoImpl(ApiService(Dio()))),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => HomeCubit(HomeRepoImpl(ApiService(Dio()))),
+        ),
+        BlocProvider(
+          create: (context) => AddTaskCubit(HomeRepoImpl(ApiService(Dio()))),
+        ),
+      ],
       child: MaterialApp.router(
         routerConfig: AppRoutes.router,
         debugShowCheckedModeBanner: false,

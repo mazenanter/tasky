@@ -8,13 +8,16 @@ class CustomTextFromFieldAdd extends StatelessWidget {
     this.maxLength,
     required this.title,
     this.sufIcon,
+    required this.controller,
   });
   final int? maxLength;
   final String title;
   final IconData? sufIcon;
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       maxLines: maxLength,
       decoration: InputDecoration(
         suffixIcon: Icon(
