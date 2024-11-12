@@ -1,11 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:tasky/core/utils/app_colors.dart';
 import 'package:tasky/core/utils/app_text_styles.dart';
+import 'package:tasky/features/home/data/models/task_model.dart';
 import 'package:tasky/features/home/presentation/views/widgets/bottom_task_item.dart';
 import 'package:tasky/features/home/presentation/views/widgets/header_task_item.dart';
 
 class TaskItem extends StatelessWidget {
-  const TaskItem({super.key});
-
+  const TaskItem({super.key, required this.taskModel});
+  final TaskModel taskModel;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -13,18 +17,31 @@ class TaskItem extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(right: 16),
-          child: Image.asset('assets/images/image 2.png'),
+          child: CircleAvatar(
+            radius: 40,
+            backgroundImage: FileImage(File(taskModel.image!)),
+          ),
         ),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const HeaderTaskItem(),
+              HeaderTaskItem(
+                statusColor: taskModel.status == 'waiting'
+                    ? AppColors.waitingTextColor
+                    : taskModel.status == 'Inprogress'
+                        ? AppColors.inProgressTextColor
+                        : taskModel.status == 'Finished'
+                            ? AppColors.finishedTextColor
+                            : Colors.white,
+                status: taskModel.status!,
+                title: taskModel.title!,
+              ),
               const SizedBox(
                 height: 4,
               ),
               Text(
-                'This application is designed for s',
+                taskModel.desc!,
                 style: AppTextStyles.styleRegular14.copyWith(
                   color: Colors.grey[600],
                 ),
@@ -32,7 +49,15 @@ class TaskItem extends StatelessWidget {
               const SizedBox(
                 height: 4,
               ),
-              const BottomTaskItem(),
+              BottomTaskItem(
+                priorityColor: taskModel.priority == 'low'
+                    ? AppColors.finishedTextColor
+                    : taskModel.priority == 'medium'
+                        ? AppColors.primaryColor
+                        : AppColors.waitingTextColor,
+                priority: taskModel.priority!,
+                date: taskModel.createdAt!.toLocal().toString().split(' ')[0],
+              ),
             ],
           ),
         ),

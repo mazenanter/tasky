@@ -50,4 +50,25 @@ class HomeRepoImpl extends HomeRepo {
       return left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, List<TaskModel>>> getAllTasks(
+      {required String token}) async {
+    try {
+      var response = await apiService.getTasks(
+        endPoint: '/todos',
+        accessToken: token,
+      );
+
+      List<TaskModel> taskModelList =
+          response.map((model) => TaskModel.fromJson(model)).toList();
+
+      return right(taskModelList);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioErr(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
 }

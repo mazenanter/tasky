@@ -9,4 +9,7 @@ abstract class HomeRepo {
     required String token,
     required CreateTaskModel createTaskModel,
   });
+  Future<Either<Failure, List<TaskModel>>> getAllTasks({
+    required String token,
+  });
 }

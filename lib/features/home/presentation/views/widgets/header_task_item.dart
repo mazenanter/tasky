@@ -5,15 +5,20 @@ import 'package:tasky/core/utils/app_text_styles.dart';
 class HeaderTaskItem extends StatelessWidget {
   const HeaderTaskItem({
     super.key,
+    required this.title,
+    required this.status,
+    required this.statusColor,
   });
-
+  final String title;
+  final String status;
+  final Color statusColor;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Expanded(
+        Expanded(
           child: Text(
-            'Grocery Shopping A',
+            title,
             maxLines: 1,
             style: AppTextStyles.styleBold16,
           ),
@@ -26,9 +31,9 @@ class HeaderTaskItem extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
             child: Text(
-              'Waiting',
+              status,
               style: AppTextStyles.styleMeduim12.copyWith(
-                color: AppColors.waitingTextColor,
+                color: statusColor,
               ),
             ),
           ),

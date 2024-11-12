@@ -7,18 +7,18 @@ Project Description
 ### Todo
 
 - [ ] delete task handle  
-- [ ] edit task handle  
-- [ ] handle task pririoty  
-- [ ] handle task status  
 - [ ] refresh token  
-- [ ] details logic  
-- [ ] details ui  
-- [ ] home logic  
 
 ### In Progress
 
-- [ ] add task logic  
+- [ ] details ui  
+- [ ] details logic  
+- [ ] edit task handle  
 
 ### Done ✓
 
+- [x] home logic  
+- [x] handle task pririoty  
+- [x] handle task status  
+- [x] add task logic  
 

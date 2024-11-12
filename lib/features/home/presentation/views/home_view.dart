@@ -7,7 +7,7 @@ import 'package:tasky/core/services/secure_storage.dart';
 import 'package:tasky/core/utils/app_colors.dart';
 import 'package:tasky/core/utils/app_routes.dart';
 import 'package:tasky/core/utils/app_text_styles.dart';
-import 'package:tasky/features/home/presentation/manager/home_cubit/home_cubit.dart';
+import 'package:tasky/features/home/presentation/manager/logout_cubit/logout_cubit.dart';
 import 'package:tasky/features/home/presentation/views/widgets/home_view_body.dart';
 
 class HomeView extends StatelessWidget {
@@ -30,19 +30,24 @@ class HomeView extends StatelessWidget {
               Icons.person_3_outlined,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 12),
-            child: IconButton(
-              onPressed: () {
-                context.read<HomeCubit>().logoutUser();
-                SecureStorage().removeAccessToken();
-                context.go(AppRoutes.kLoginView);
-              },
-              icon: const Icon(
-                Icons.logout_rounded,
-                color: AppColors.primaryColor,
-              ),
-            ),
+          BlocConsumer<LogoutCubit, LogoutState>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              return Padding(
+                padding: const EdgeInsets.only(right: 12),
+                child: IconButton(
+                  onPressed: () {
+                    context.read<LogoutCubit>().logoutUser();
+                    SecureStorage().removeAccessToken();
+                    context.go(AppRoutes.kLoginView);
+                  },
+                  icon: const Icon(
+                    Icons.logout_rounded,
+                    color: AppColors.primaryColor,
+                  ),
+                ),
+              );
+            },
           ),
         ],
       ),

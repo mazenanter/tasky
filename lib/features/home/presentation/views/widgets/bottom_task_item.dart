@@ -1,33 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:tasky/core/utils/app_colors.dart';
 import 'package:tasky/core/utils/app_text_styles.dart';
 
 class BottomTaskItem extends StatelessWidget {
   const BottomTaskItem({
     super.key,
+    required this.priority,
+    required this.date,
+    required this.priorityColor,
   });
-
+  final String priority;
+  final String date;
+  final Color priorityColor;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Row(
           children: [
-            const Icon(
+            Icon(
               Icons.flag_outlined,
-              color: AppColors.primaryColor,
+              color: priorityColor,
             ),
             Text(
-              'Medium',
+              priority,
               style: AppTextStyles.styleMeduim12.copyWith(
-                color: AppColors.primaryColor,
+                color: priorityColor,
               ),
             ),
           ],
         ),
         const Spacer(),
         Text(
-          '30/12/2022',
+          date,
           style: AppTextStyles.styleMeduim12.copyWith(
             color: Colors.grey[600],
           ),

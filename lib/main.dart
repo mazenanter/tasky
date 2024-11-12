@@ -7,6 +7,7 @@ import 'package:tasky/core/utils/app_routes.dart';
 import 'package:tasky/features/home/data/repo/home_repo_impl.dart';
 import 'package:tasky/features/home/presentation/manager/add_task_cubit/add_task_cubit.dart';
 import 'package:tasky/features/home/presentation/manager/home_cubit/home_cubit.dart';
+import 'package:tasky/features/home/presentation/manager/logout_cubit/logout_cubit.dart';
 
 void main() {
   Bloc.observer = AppBlocObserver();
@@ -20,6 +21,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (context) => LogoutCubit(HomeRepoImpl(ApiService(Dio()))),
+        ),
         BlocProvider(
           create: (context) => HomeCubit(HomeRepoImpl(ApiService(Dio()))),
         ),
