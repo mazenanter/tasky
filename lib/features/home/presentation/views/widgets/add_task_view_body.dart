@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tasky/core/func/valid_inputs.dart';
-import 'package:tasky/core/utils/app_routes.dart';
 import 'package:tasky/core/utils/app_text_styles.dart';
 import 'package:tasky/core/widgets/custom_button.dart';
 import 'package:tasky/core/widgets/custom_indicator.dart';
 import 'package:tasky/core/widgets/snack_bar.dart';
 import 'package:tasky/features/home/data/models/create_task_model.dart';
 import 'package:tasky/features/home/presentation/manager/add_task_cubit/add_task_cubit.dart';
+import 'package:tasky/features/home/presentation/manager/home_cubit/home_cubit.dart';
 import 'package:tasky/features/home/presentation/views/widgets/add_image_widget.dart';
 import 'package:tasky/features/home/presentation/views/widgets/custom_drop_down_button.dart';
 import 'package:tasky/features/home/presentation/views/widgets/custom_text_form_field_add.dart';
@@ -28,7 +28,8 @@ class AddTaskViewBody extends StatelessWidget {
             context,
             'Task Added Successfully',
           );
-          GoRouter.of(context).pushReplacement(AppRoutes.kHomeView);
+          BlocProvider.of<HomeCubit>(context).getTasks();
+          GoRouter.of(context).pop();
         } else if (state is AddTaskError) {
           errorSnackBar(
             context,
