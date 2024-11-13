@@ -47,4 +47,24 @@ class HomeCubit extends Cubit<HomeState> {
       );
     }
   }
+
+  Future<void> deleteTaskk({required String taskId}) async {
+    String? token = await SecureStorage().getAccessToken();
+    if (token != null) {
+      var res = await homeRepo.deleteTask(
+        token: token,
+        taskId: taskId,
+      );
+      return res.fold(
+        (fail) {
+          log(fail.errMsg);
+          return emit(DeleteTaskError(fail.errMsg));
+        },
+        (success) {
+          log(success.id!);
+          return emit(DeleteTaskSuccess());
+        },
+      );
+    }
+  }
 }

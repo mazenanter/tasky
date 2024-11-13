@@ -16,6 +16,7 @@ class AddTaskCubit extends Cubit<AddTaskState> {
   File? imageFile;
   DateTime? selectedDate;
   String? selectedValue;
+  GlobalKey<FormState> formKey = GlobalKey();
   final HomeRepo homeRepo;
   final List<String> items = [
     'low',

@@ -6,17 +6,18 @@ Project Description
 
 ### Todo
 
-- [ ] delete task handle  
+- [ ] qr code  
 - [ ] refresh token  
 
 ### In Progress
 
-- [ ] details ui  
-- [ ] details logic  
 - [ ] edit task handle  
 
 ### Done ✓
 
+- [x] delete task handle  
+- [x] details logic  
+- [x] details ui  
 - [x] home logic  
 - [x] handle task pririoty  
 - [x] handle task status  

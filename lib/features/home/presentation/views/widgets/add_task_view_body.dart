@@ -2,6 +2,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tasky/core/func/valid_inputs.dart';
 import 'package:tasky/core/utils/app_routes.dart';
 import 'package:tasky/core/utils/app_text_styles.dart';
 import 'package:tasky/core/widgets/custom_button.dart';
@@ -40,95 +41,120 @@ class AddTaskViewBody extends StatelessWidget {
         return SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(22),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const AddImageWidget(),
-                const SizedBox(
-                  height: 16,
-                ),
-                Text(
-                  'Task title',
-                  style: AppTextStyles.styleMeduim12.copyWith(
-                    color: const Color(0xff6E6A7C),
+            child: Form(
+              key: controller.formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const AddImageWidget(),
+                  const SizedBox(
+                    height: 16,
                   ),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                CustomTextFromFieldAdd(
-                  controller: controller.taskTitleController,
-                  title: 'Enter title here...',
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Text(
-                  'Task Description',
-                  style: AppTextStyles.styleMeduim12.copyWith(
-                    color: const Color(0xff6E6A7C),
+                  Text(
+                    'Task title',
+                    style: AppTextStyles.styleMeduim12.copyWith(
+                      color: const Color(0xff6E6A7C),
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                CustomTextFromFieldAdd(
-                  controller: controller.taskContentController,
-                  maxLength: 7,
-                  title: 'Enter description here...',
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Text(
-                  'Priority',
-                  style: AppTextStyles.styleMeduim12.copyWith(
-                    color: const Color(0xff6E6A7C),
+                  const SizedBox(
+                    height: 8,
                   ),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                const CustomDropDwonButton(),
-                const SizedBox(
-                  height: 16,
-                ),
-                Text(
-                  'Due date',
-                  style: AppTextStyles.styleMeduim12.copyWith(
-                    color: const Color(0xff6E6A7C),
+                  CustomTextFromFieldAdd(
+                    validator: (value) {
+                      return validInput(value, 6, 'gen', context);
+                    },
+                    controller: controller.taskTitleController,
+                    title: 'Enter title here...',
                   ),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                const DueDataWidget(),
-                SizedBox(
-                  height: height * 0.028,
-                ),
-                ConditionalBuilder(
-                  condition: state is AddTaskLoading,
-                  builder: (context) => const CustomIndicator(),
-                  fallback: (context) {
-                    return CustomButton(
-                      height: height,
-                      onPressed: () {
-                        controller.addOneTask(
-                          model: CreateTaskModel(
-                            image: controller.imageFile!.path,
-                            title: controller.taskTitleController.text,
-                            desc: controller.taskContentController.text,
-                            priority: controller.selectedValue.toString(),
-                            dueDate: controller.selectedDate.toString(),
-                          ),
-                        );
-                        controller.clearData();
-                      },
-                      buttonText: 'Add task',
-                    );
-                  },
-                ),
-              ],
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Text(
+                    'Task Description',
+                    style: AppTextStyles.styleMeduim12.copyWith(
+                      color: const Color(0xff6E6A7C),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  CustomTextFromFieldAdd(
+                    validator: (value) {
+                      return validInput(value, 10, 'gen', context);
+                    },
+                    controller: controller.taskContentController,
+                    maxLength: 7,
+                    title: 'Enter description here...',
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Text(
+                    'Priority',
+                    style: AppTextStyles.styleMeduim12.copyWith(
+                      color: const Color(0xff6E6A7C),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  const CustomDropDwonButton(),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Text(
+                    'Due date',
+                    style: AppTextStyles.styleMeduim12.copyWith(
+                      color: const Color(0xff6E6A7C),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  const DueDataWidget(),
+                  SizedBox(
+                    height: height * 0.028,
+                  ),
+                  ConditionalBuilder(
+                    condition: state is AddTaskLoading,
+                    builder: (context) => const CustomIndicator(),
+                    fallback: (context) {
+                      return CustomButton(
+                        height: height,
+                        onPressed: () {
+                          if (controller.formKey.currentState!.validate()) {
+                            if (controller.imageFile != null &&
+                                controller.selectedValue != null) {
+                              controller.addOneTask(
+                                model: CreateTaskModel(
+                                  image: controller.imageFile!.path,
+                                  title: controller.taskTitleController.text,
+                                  desc: controller.taskContentController.text,
+                                  priority: controller.selectedValue.toString(),
+                                  dueDate: controller.selectedDate.toString(),
+                                ),
+                              );
+                              controller.clearData();
+                            }
+                          }
+                          if (controller.imageFile == null) {
+                            errorSnackBar(
+                              context,
+                              'image cannot be null',
+                            );
+                          } else if (controller.selectedValue == null) {
+                            errorSnackBar(
+                              context,
+                              'please select priority',
+                            );
+                          }
+                        },
+                        buttonText: 'Add task',
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         );

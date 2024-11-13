@@ -35,4 +35,9 @@ abstract class AppTextStyles {
     fontSize: 19,
     fontWeight: FontWeight.w500,
   );
+  static const TextStyle styleMeduim16 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    color: Color(0xffFF7D53),
+  );
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tasky/core/utils/app_routes.dart';
 import 'package:tasky/core/utils/app_text_styles.dart';
 import 'package:tasky/features/home/presentation/manager/home_cubit/home_cubit.dart';
 import 'package:tasky/features/home/presentation/views/widgets/task_item.dart';
@@ -20,6 +22,12 @@ class FinishedView extends StatelessWidget {
               height: 24,
             ),
             itemBuilder: (context, index) => TaskItem(
+              onTap: () {
+                GoRouter.of(context).push(
+                  AppRoutes.kDetailsView,
+                  extra: list[index],
+                );
+              },
               taskModel: list[index],
             ),
           );

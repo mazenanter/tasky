@@ -71,4 +71,23 @@ class HomeRepoImpl extends HomeRepo {
       return left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, TaskModel>> deleteTask(
+      {required String token, required String taskId}) async {
+    try {
+      var response = await apiService.deleteTasks(
+        endPoint: '/todos/',
+        accessToken: token,
+        taskId: taskId,
+      );
+      TaskModel model = TaskModel.fromJson(response);
+      return right(model);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioErr(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
 }

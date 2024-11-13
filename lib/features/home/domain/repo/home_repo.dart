@@ -12,4 +12,8 @@ abstract class HomeRepo {
   Future<Either<Failure, List<TaskModel>>> getAllTasks({
     required String token,
   });
+  Future<Either<Failure, TaskModel>> deleteTask({
+    required String token,
+    required String taskId,
+  });
 }

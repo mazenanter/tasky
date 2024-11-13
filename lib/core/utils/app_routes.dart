@@ -1,7 +1,9 @@
 import 'package:go_router/go_router.dart';
 import 'package:tasky/features/auth/presentation/views/login_view.dart';
 import 'package:tasky/features/auth/presentation/views/register_view.dart';
+import 'package:tasky/features/home/data/models/task_model.dart';
 import 'package:tasky/features/home/presentation/views/add_task_view.dart';
+import 'package:tasky/features/home/presentation/views/details_view.dart';
 import 'package:tasky/features/home/presentation/views/home_view.dart';
 import 'package:tasky/features/intro/views/onboard_view.dart';
 import 'package:tasky/features/intro/views/splash_view.dart';
@@ -14,6 +16,7 @@ class AppRoutes {
   static const String kHomeView = '/kHomeView';
   static const String kProfileView = '/kProfileView';
   static const String kAddTaskView = '/kAddTaskView';
+  static const String kDetailsView = '/kDetailsView';
   static final GoRouter router = GoRouter(
     routes: [
       GoRoute(
@@ -44,6 +47,14 @@ class AppRoutes {
         path: kAddTaskView,
         builder: (context, state) => const AddTaskView(),
       ),
+      GoRoute(
+          path: kDetailsView,
+          builder: (context, state) {
+            final taskModel = state.extra as TaskModel;
+            return DetailsView(
+              taskModel: taskModel,
+            );
+          }),
     ],
   );
 }

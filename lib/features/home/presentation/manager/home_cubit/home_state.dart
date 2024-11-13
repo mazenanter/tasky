@@ -21,6 +21,14 @@ final class HomeGetTasksError extends HomeState {
 
 final class HomeLogoutSuccess extends HomeState {}
 
+final class DeleteTaskSuccess extends HomeState {}
+
+final class DeleteTaskError extends HomeState {
+  final String errMsg;
+
+  DeleteTaskError(this.errMsg);
+}
+
 final class HomeLogoutError extends HomeState {
   final String errMsg;
 

@@ -51,4 +51,21 @@ class ApiService {
     );
     return response.data;
   }
+
+  Future<Map<String, dynamic>> deleteTasks({
+    required String endPoint,
+    required String accessToken,
+    required String taskId,
+  }) async {
+    final response = await dio.delete(
+      '$baseUrl$endPoint$taskId',
+      queryParameters: {},
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $accessToken',
+        },
+      ),
+    );
+    return response.data;
+  }
 }
