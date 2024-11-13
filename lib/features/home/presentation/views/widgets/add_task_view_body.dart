@@ -122,6 +122,17 @@ class AddTaskViewBody extends StatelessWidget {
                       return CustomButton(
                         height: height,
                         onPressed: () {
+                          if (controller.imageFile == null) {
+                            errorSnackBar(
+                              context,
+                              'image cannot be null',
+                            );
+                          } else if (controller.selectedValue == null) {
+                            errorSnackBar(
+                              context,
+                              'please select priority',
+                            );
+                          }
                           if (controller.formKey.currentState!.validate()) {
                             if (controller.imageFile != null &&
                                 controller.selectedValue != null) {
@@ -136,17 +147,6 @@ class AddTaskViewBody extends StatelessWidget {
                               );
                               controller.clearData();
                             }
-                          }
-                          if (controller.imageFile == null) {
-                            errorSnackBar(
-                              context,
-                              'image cannot be null',
-                            );
-                          } else if (controller.selectedValue == null) {
-                            errorSnackBar(
-                              context,
-                              'please select priority',
-                            );
                           }
                         },
                         buttonText: 'Add task',
