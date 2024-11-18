@@ -6,8 +6,9 @@ Project Description
 
 ### Todo
 
-- [ ] qr code  
 - [ ] refresh token  
+- [ ] refactor code and maintain app  
+- [ ] qr code  
 
 ### In Progress
 

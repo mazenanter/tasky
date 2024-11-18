@@ -22,6 +22,19 @@ class WaitingView extends StatelessWidget {
               height: 24,
             ),
             itemBuilder: (context, index) => TaskItem(
+              onDelete: (value) {
+                if (value == 'delete') {
+                  context.read<HomeCubit>().deleteTaskk(
+                        taskId: list[index].id!,
+                      );
+                }
+                if (value == 'edit') {
+                  GoRouter.of(context).push(
+                    AppRoutes.kEditView,
+                    extra: list[index],
+                  );
+                }
+              },
               onTap: () {
                 GoRouter.of(context).push(
                   AppRoutes.kDetailsView,

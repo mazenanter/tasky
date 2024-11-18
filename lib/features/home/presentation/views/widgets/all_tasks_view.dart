@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:tasky/core/utils/app_routes.dart';
 import 'package:tasky/core/utils/app_text_styles.dart';
 import 'package:tasky/core/widgets/custom_indicator.dart';
+import 'package:tasky/core/widgets/snack_bar.dart';
 import 'package:tasky/features/home/presentation/manager/home_cubit/home_cubit.dart';
 import 'package:tasky/features/home/presentation/views/widgets/task_item.dart';
 
@@ -17,18 +18,22 @@ class AllTasksView extends StatelessWidget {
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {
         if (state is DeleteTaskSuccess) {
+          successSnackbar(
+            context,
+            'Delete task successfully',
+          );
+          BlocProvider.of<HomeCubit>(context).getTasks();
+        }
+        if (state is DeleteTaskError) {
+          errorSnackBar(
+            context,
+            state.errMsg,
+          );
           BlocProvider.of<HomeCubit>(context).getTasks();
         }
       },
       builder: (context, state) {
         var list = context.read<HomeCubit>().allTasksList;
-        if (list.isEmpty) {
-          return const Center(
-              child: Text(
-            'No tasks yet, try add one...',
-            style: AppTextStyles.styleBold18,
-          ));
-        }
         if (state is HomeGetTasksLoading) {
           return const CustomIndicator();
         } else if (state is HomeGetTasksSuccess) {
@@ -43,6 +48,12 @@ class AllTasksView extends StatelessWidget {
                   context.read<HomeCubit>().deleteTaskk(
                         taskId: list[index].id!,
                       );
+                }
+                if (value == 'edit') {
+                  GoRouter.of(context).push(
+                    AppRoutes.kEditView,
+                    extra: list[index],
+                  );
                 }
               },
               onTap: () {
@@ -61,6 +72,12 @@ class AllTasksView extends StatelessWidget {
               style: AppTextStyles.styleBold18,
             ),
           );
+        } else if (list.isEmpty) {
+          return const Center(
+              child: Text(
+            'No tasks yet, try add one...',
+            style: AppTextStyles.styleBold18,
+          ));
         }
         return const Center(
             child: Text(

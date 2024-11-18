@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:tasky/core/errors/failure.dart';
 import 'package:tasky/features/home/data/models/create_task_model.dart';
+import 'package:tasky/features/home/data/models/edit_task_model.dart';
 import 'package:tasky/features/home/data/models/task_model.dart';
 
 abstract class HomeRepo {
@@ -15,5 +16,10 @@ abstract class HomeRepo {
   Future<Either<Failure, TaskModel>> deleteTask({
     required String token,
     required String taskId,
+  });
+  Future<Either<Failure, TaskModel>> editTask({
+    required String token,
+    required String taskId,
+    required EditTaskModel editTaskModel,
   });
 }

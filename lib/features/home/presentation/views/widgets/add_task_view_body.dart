@@ -28,8 +28,8 @@ class AddTaskViewBody extends StatelessWidget {
             context,
             'Task Added Successfully',
           );
-          BlocProvider.of<HomeCubit>(context).getTasks();
           GoRouter.of(context).pop();
+          BlocProvider.of<HomeCubit>(context).getTasks();
         } else if (state is AddTaskError) {
           errorSnackBar(
             context,

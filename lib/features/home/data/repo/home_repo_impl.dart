@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:tasky/core/errors/failure.dart';
 import 'package:tasky/core/services/api_service.dart';
 import 'package:tasky/features/home/data/models/create_task_model.dart';
+import 'package:tasky/features/home/data/models/edit_task_model.dart';
 import 'package:tasky/features/home/data/models/task_model.dart';
 import 'package:tasky/features/home/domain/repo/home_repo.dart';
 
@@ -80,6 +81,28 @@ class HomeRepoImpl extends HomeRepo {
         endPoint: '/todos/',
         accessToken: token,
         taskId: taskId,
+      );
+      TaskModel model = TaskModel.fromJson(response);
+      return right(model);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioErr(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, TaskModel>> editTask(
+      {required String token,
+      required String taskId,
+      required EditTaskModel editTaskModel}) async {
+    try {
+      var response = await apiService.putRequest(
+        endPoint: '/todos/',
+        accessToken: token,
+        taskId: taskId,
+        data: editTaskModel.toJson(),
       );
       TaskModel model = TaskModel.fromJson(response);
       return right(model);

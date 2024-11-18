@@ -25,7 +25,11 @@ class HeaderTaskItem extends StatelessWidget {
         ),
         Container(
           decoration: BoxDecoration(
-            color: AppColors.waitingColor,
+            color: status == 'waiting'
+                ? AppColors.waitingColor
+                : status == 'inProgress'
+                    ? AppColors.inProgressBackColor
+                    : AppColors.finishedBackColor,
             borderRadius: BorderRadius.circular(8),
           ),
           child: Padding(

@@ -6,6 +6,7 @@ import 'package:tasky/core/services/bloc_observer.dart';
 import 'package:tasky/core/utils/app_routes.dart';
 import 'package:tasky/features/home/data/repo/home_repo_impl.dart';
 import 'package:tasky/features/home/presentation/manager/add_task_cubit/add_task_cubit.dart';
+import 'package:tasky/features/home/presentation/manager/edit_task_cubit/edit_task_cubit.dart';
 import 'package:tasky/features/home/presentation/manager/home_cubit/home_cubit.dart';
 import 'package:tasky/features/home/presentation/manager/logout_cubit/logout_cubit.dart';
 
@@ -29,6 +30,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => AddTaskCubit(HomeRepoImpl(ApiService(Dio()))),
+        ),
+        BlocProvider(
+          create: (context) => EditTaskCubit(HomeRepoImpl(ApiService(Dio()))),
         ),
       ],
       child: MaterialApp.router(

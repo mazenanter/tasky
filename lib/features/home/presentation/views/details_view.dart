@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tasky/core/utils/app_routes.dart';
 import 'package:tasky/core/utils/app_text_styles.dart';
 import 'package:tasky/core/widgets/custom_arrow_back.dart';
 import 'package:tasky/features/home/data/models/task_model.dart';
+import 'package:tasky/features/home/presentation/manager/home_cubit/home_cubit.dart';
+import 'package:tasky/features/home/presentation/views/widgets/custom_popup_menu_button.dart';
 import 'package:tasky/features/home/presentation/views/widgets/details_view_body.dart';
 
 class DetailsView extends StatelessWidget {
@@ -18,10 +23,22 @@ class DetailsView extends StatelessWidget {
         ),
         titleSpacing: 0,
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.more_vert_outlined,
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: CustomPopupMenuButton(
+              onSelected: (value) {
+                if (value == 'delete') {
+                  context.read<HomeCubit>().deleteTaskk(taskId: taskModel.id!);
+                  GoRouter.of(context).pop();
+                  BlocProvider.of<HomeCubit>(context).getTasks();
+                }
+                if (value == 'edit') {
+                  GoRouter.of(context).push(
+                    AppRoutes.kEditView,
+                    extra: taskModel,
+                  );
+                }
+              },
             ),
           ),
         ],

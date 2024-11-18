@@ -66,6 +66,25 @@ class ApiService {
         },
       ),
     );
+
+    return response.data;
+  }
+
+  Future<Map<String, dynamic>> putRequest({
+    required String endPoint,
+    required String accessToken,
+    required String taskId,
+    required Map<String, dynamic> data,
+  }) async {
+    final response = await dio.put(
+      '$baseUrl$endPoint$taskId',
+      data: data,
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $accessToken',
+        },
+      ),
+    );
     return response.data;
   }
 }

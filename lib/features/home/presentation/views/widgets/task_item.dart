@@ -35,9 +35,9 @@ class TaskItem extends StatelessWidget {
                 HeaderTaskItem(
                   statusColor: taskModel.status == 'waiting'
                       ? AppColors.waitingTextColor
-                      : taskModel.status == 'Inprogress'
+                      : taskModel.status == 'inProgress'
                           ? AppColors.inProgressTextColor
-                          : taskModel.status == 'Finished'
+                          : taskModel.status == 'finished'
                               ? AppColors.finishedTextColor
                               : Colors.white,
                   status: taskModel.status!,

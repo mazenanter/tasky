@@ -36,9 +36,9 @@ class HomeCubit extends Cubit<HomeState> {
           for (int i = 0; i < tasks.length; i++) {
             if (tasks[i].status == 'waiting') {
               waitingTasksList.add(tasks[i]);
-            } else if (tasks[i].status == 'Inprogress') {
+            } else if (tasks[i].status == 'inProgress') {
               inProgressTasksList.add(tasks[i]);
-            } else if (tasks[i].status == 'Finished') {
+            } else if (tasks[i].status == 'finished') {
               finishedTasksList.add(tasks[i]);
             }
           }
