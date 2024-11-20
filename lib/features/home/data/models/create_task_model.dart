@@ -29,4 +29,14 @@ class CreateTaskModel {
       'dueDate': dueDate,
     };
   }
+
+  CreateTaskModel copyWith({String? image}) {
+    return CreateTaskModel(
+      priority: priority,
+      title: title,
+      desc: desc,
+      dueDate: dueDate,
+      image: image ?? this.image,
+    );
+  }
 }

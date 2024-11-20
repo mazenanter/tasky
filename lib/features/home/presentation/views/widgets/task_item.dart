@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:tasky/core/utils/app_colors.dart';
 import 'package:tasky/core/utils/app_text_styles.dart';
@@ -21,11 +19,13 @@ class TaskItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16),
+          const Padding(
+            padding: EdgeInsets.only(right: 16),
             child: CircleAvatar(
               radius: 40,
-              backgroundImage: FileImage(File(taskModel.image!)),
+              backgroundImage: NetworkImage(
+                'https://img.freepik.com/free-vector/focus-abstract-concept_335657-3014.jpg?t=st=1732049147~exp=1732052747~hmac=a6cf5a06cac570775234e9a006ed302af5c9c95425bdb149b50890932ace5a53&w=740',
+              ),
             ),
           ),
           Expanded(

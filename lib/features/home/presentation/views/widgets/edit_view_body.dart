@@ -1,12 +1,8 @@
-import 'dart:io';
-
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tasky/core/utils/app_colors.dart';
 import 'package:tasky/core/utils/app_routes.dart';
-import 'package:tasky/core/utils/app_text_styles.dart';
 import 'package:tasky/core/widgets/custom_button.dart';
 import 'package:tasky/core/widgets/custom_indicator.dart';
 import 'package:tasky/core/widgets/snack_bar.dart';
@@ -63,74 +59,6 @@ class _EditViewBodyState extends State<EditViewBody> {
             key: controller.formKey,
             child: Column(
               children: [
-                Stack(
-                  alignment: AlignmentDirectional.topEnd,
-                  children: [
-                    Image.file(
-                      height: 225,
-                      width: double.infinity,
-                      fit: BoxFit.fill,
-                      controller.imageFile ?? File(widget.taskModel.image!),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: CircleAvatar(
-                        backgroundColor: AppColors.primaryColor,
-                        child: IconButton(
-                          onPressed: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  actionsAlignment: MainAxisAlignment.center,
-                                  content: const Text(
-                                    'Choose Source',
-                                  ),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () {
-                                        context
-                                            .read<EditTaskCubit>()
-                                            .pickGalleryImage();
-                                        Navigator.pop(context);
-                                      },
-                                      child: Text(
-                                        'Gallery',
-                                        style:
-                                            AppTextStyles.styleBold14.copyWith(
-                                          color: AppColors.primaryColor,
-                                        ),
-                                      ),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        context
-                                            .read<EditTaskCubit>()
-                                            .pickCameraImage();
-                                        Navigator.pop(context);
-                                      },
-                                      child: Text(
-                                        'Camera',
-                                        style:
-                                            AppTextStyles.styleBold14.copyWith(
-                                          color: AppColors.primaryColor,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                          },
-                          icon: const Icon(
-                            Icons.edit,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
                 const SizedBox(
                   height: 16,
                 ),
@@ -143,7 +71,7 @@ class _EditViewBodyState extends State<EditViewBody> {
                         controller: controller.taskTitleController,
                       ),
                       const SizedBox(
-                        height: 8,
+                        height: 16,
                       ),
                       CustomTextFromFieldAdd(
                         maxLength: 7,
@@ -151,19 +79,19 @@ class _EditViewBodyState extends State<EditViewBody> {
                         controller: controller.taskContentController,
                       ),
                       const SizedBox(
-                        height: 8,
+                        height: 16,
                       ),
                       CustomDropDownPriorityWidget(
                         value: widget.taskModel.priority!,
                       ),
                       const SizedBox(
-                        height: 8,
+                        height: 16,
                       ),
                       CustomDropDownStatusWidget(
                         value: widget.taskModel.status!,
                       ),
                       const SizedBox(
-                        height: 8,
+                        height: 16,
                       ),
                       ConditionalBuilder(
                         condition: state is EditTaskLoading,

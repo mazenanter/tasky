@@ -36,7 +36,7 @@ class AllTasksView extends StatelessWidget {
         var list = context.read<HomeCubit>().allTasksList;
         if (state is HomeGetTasksLoading) {
           return const CustomIndicator();
-        } else if (state is HomeGetTasksSuccess) {
+        } else if (list.isNotEmpty) {
           return ListView.separated(
             itemCount: list.length,
             separatorBuilder: (context, index) => const SizedBox(

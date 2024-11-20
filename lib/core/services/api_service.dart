@@ -1,15 +1,49 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
+import 'package:tasky/core/services/secure_storage.dart';
 
 class ApiService {
   final Dio dio;
 
-  ApiService(this.dio);
+  ApiService(this.dio) {
+    _addInterceptors();
+  }
 
   static const String baseUrl = 'https://todo.iraqsapp.com';
+  void _addInterceptors() {
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onError: (DioException e, ErrorInterceptorHandler handler) async {
+          if (e.response?.statusCode == 401) {
+            String? refreshToken = await SecureStorage().getRefreshToken();
+
+            String? newAccessToken = await _refreshToken(refreshToken!);
+
+            e.requestOptions.headers['Authorization'] =
+                'Bearer $newAccessToken';
+
+            final clonedRequest = await dio.request(
+              e.requestOptions.path,
+              options: Options(
+                method: e.requestOptions.method,
+                headers: e.requestOptions.headers,
+              ),
+              data: e.requestOptions.data,
+              queryParameters: e.requestOptions.queryParameters,
+            );
+
+            return handler.resolve(clonedRequest);
+          }
+          return handler.next(e);
+        },
+      ),
+    );
+  }
 
   Future<Map<String, dynamic>> postRequest({
     required String endPoint,
-    required Map<String, dynamic> data,
+    required dynamic data,
     Map<String, dynamic>? headers,
   }) async {
     final response = await dio.post(
@@ -86,5 +120,27 @@ class ApiService {
       ),
     );
     return response.data;
+  }
+
+  Future<String?> _refreshToken(String refreshToken) async {
+    try {
+      final response = await dio.get(
+        '$baseUrl/auth/refresh-token?token=$refreshToken',
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $refreshToken',
+          },
+        ),
+      );
+
+      String? newAccessToken = response.data['access_token'];
+      if (newAccessToken != null) {
+        await SecureStorage().saveAccessToken(newAccessToken);
+      }
+      return newAccessToken;
+    } catch (e) {
+      log('Error refreshing token: $e');
+      return null;
+    }
   }
 }

@@ -10,7 +10,6 @@ import 'package:tasky/core/widgets/snack_bar.dart';
 import 'package:tasky/features/home/data/models/create_task_model.dart';
 import 'package:tasky/features/home/presentation/manager/add_task_cubit/add_task_cubit.dart';
 import 'package:tasky/features/home/presentation/manager/home_cubit/home_cubit.dart';
-import 'package:tasky/features/home/presentation/views/widgets/add_image_widget.dart';
 import 'package:tasky/features/home/presentation/views/widgets/custom_drop_down_button.dart';
 import 'package:tasky/features/home/presentation/views/widgets/custom_text_form_field_add.dart';
 import 'package:tasky/features/home/presentation/views/widgets/due_date_widget.dart';
@@ -28,6 +27,7 @@ class AddTaskViewBody extends StatelessWidget {
             context,
             'Task Added Successfully',
           );
+
           GoRouter.of(context).pop();
           BlocProvider.of<HomeCubit>(context).getTasks();
         } else if (state is AddTaskError) {
@@ -47,7 +47,6 @@ class AddTaskViewBody extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const AddImageWidget(),
                   const SizedBox(
                     height: 16,
                   ),
@@ -123,23 +122,18 @@ class AddTaskViewBody extends StatelessWidget {
                       return CustomButton(
                         height: height,
                         onPressed: () {
-                          if (controller.imageFile == null) {
-                            errorSnackBar(
-                              context,
-                              'image cannot be null',
-                            );
-                          } else if (controller.selectedValue == null) {
+                          if (controller.selectedValue == null) {
                             errorSnackBar(
                               context,
                               'please select priority',
                             );
                           }
                           if (controller.formKey.currentState!.validate()) {
-                            if (controller.imageFile != null &&
-                                controller.selectedValue != null) {
+                            if (controller.selectedValue != null) {
                               controller.addOneTask(
                                 model: CreateTaskModel(
-                                  image: controller.imageFile!.path,
+                                  image:
+                                      'https://img.freepik.com/free-vector/focus-abstract-concept_335657-3014.jpg?t=st=1732049147~exp=1732052747~hmac=a6cf5a06cac570775234e9a006ed302af5c9c95425bdb149b50890932ace5a53&w=740',
                                   title: controller.taskTitleController.text,
                                   desc: controller.taskContentController.text,
                                   priority: controller.selectedValue.toString(),

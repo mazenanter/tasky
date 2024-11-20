@@ -32,8 +32,10 @@ class HomeRepoImpl extends HomeRepo {
   }
 
   @override
-  Future<Either<Failure, TaskModel>> addTask(
-      {required String token, required CreateTaskModel createTaskModel}) async {
+  Future<Either<Failure, TaskModel>> addTask({
+    required String token,
+    required CreateTaskModel createTaskModel,
+  }) async {
     try {
       var response = await apiService.postRequest(
         endPoint: '/todos',
@@ -42,6 +44,7 @@ class HomeRepoImpl extends HomeRepo {
           'Authorization': 'Bearer $token',
         },
       );
+
       TaskModel model = TaskModel.fromJson(response);
       return right(model);
     } catch (e) {

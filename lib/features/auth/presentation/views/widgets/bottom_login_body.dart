@@ -33,6 +33,7 @@ class BottomLoginBody extends StatelessWidget {
         listener: (context, state) {
           if (state is LoginSuccess) {
             SecureStorage().saveAccessToken(state.authModel.accessToken);
+            SecureStorage().setRefreshToken(state.authModel.refreshToken);
             successSnackbar(
               context,
               'login successfully',

@@ -6,16 +6,16 @@ Project Description
 
 ### Todo
 
-- [ ] refresh token  
-- [ ] refactor code and maintain app  
 - [ ] qr code  
 
 ### In Progress
 
-- [ ] edit task handle  
+- [ ] refactor code and maintain app  
 
 ### Done ✓
 
+- [x] refresh token  
+- [x] edit task handle  
 - [x] delete task handle  
 - [x] details logic  
 - [x] details ui  

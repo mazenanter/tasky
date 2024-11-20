@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -42,12 +40,6 @@ class DetailsViewBody extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.file(
-              height: 225,
-              width: double.infinity,
-              fit: BoxFit.fill,
-              File(taskModel.image!),
-            ),
             const SizedBox(
               height: 16,
             ),
