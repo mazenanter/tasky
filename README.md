@@ -1,58 +1,47 @@
-Tasky - Flutter Task Management App
-Tasky هو تطبيق إدارة مهام بسيط ومبتكر يتيح للمستخدمين تسجيل المهام وتنظيمها بسهولة بناءً على أولويتها وحالتها.
+# Tasky 📝✨
 
-📌 Features
-التسجيل بحساب جديد:
-يستطيع المستخدم إنشاء حساب جديد باستخدام البريد الإلكتروني وكلمة المرور.
-إضافة مهمة جديدة:
-إدخال عنوان ووصف المهمة وتحديد الأولوية (عادي، متوسط، عالي).
-تغيير حالة المهمة:
-تعديل حالة المهمة بين:
-In Progress
-Finished
-Waiting
-حذف أو تعديل المهام:
-إمكانية حذف المهام أو تحديث تفاصيلها بكل سهولة.
-فلترة المهام:
-عرض المهام بناءً على الحالة المختارة (All, In Progress, Waiting, Finished).
-🛠 Tech Stack
-Flutter
-Dart
-State Management: Cubit
-Local Database: SQLite (or يمكن تعديلها حسب اللي استخدمته)
-UI/UX:
-تصميم بسيط ومتجاوب مع الشاشات المختلفة.
-🚀 Getting Started
-Prerequisites
-Flutter SDK مثبت على جهازك.
-محرر الأكواد (مثل VS Code أو Android Studio).
-Installation
-قم باستنساخ الريبو إلى جهازك:
-bash
-Copy code
-git clone https://github.com/your-username/tasky.git  
-انتقل إلى مسار المشروع:
-bash
-Copy code
-cd tasky  
-ثبّت الحزم المطلوبة:
-bash
-Copy code
-flutter pub get  
-Run the App
-اربط جهازًا محمولًا أو قم بتشغيل المحاكي.
-قم بتشغيل التطبيق:
-bash
-Copy code
-flutter run  
-📸 Screenshots
-(يمكنك إضافة صور للشاشات الرئيسية: شاشة تسجيل الدخول، شاشة إضافة مهمة، شاشة عرض المهام مع الفلاتر)
+**Tasky** is a Flutter-based task management app that helps users organize their daily tasks with ease. Add new tasks, update their status, or delete them quickly and efficiently.
 
-🤝 Contributing
-مرحب بالمساهمات! إذا كنت ترغب في تحسين التطبيق، برجاء فتح Pull Request مع وصف التغييرات.
-📜 License
-هذا المشروع مرخص تحت MIT License.
-✨ Contact
-لو عندك أي استفسار، يمكنك التواصل معي عبر:
-البريد الإلكتروني: your-email@example.com
-LinkedIn: Your Name
+---
+
+## Demo Video 🎥  
+Watch the demo video to see the app in action: [Click here to watch](https://drive.google.com/file/d/example-link/view?usp=sharing)  
+
+---
+
+## Features ✨  
+- **Add Tasks**:  
+  Add new tasks with a title, description, and priority (Low, Medium, High).  
+- **Update Task Status**:  
+  Change the status of tasks to:  
+  - **In Progress**  
+  - **Waiting**  
+  - **Finished**  
+- **Filter Tasks**:  
+  View tasks based on their status using the filter buttons: All, In Progress, Waiting, or Finished.  
+- **Edit or Delete Tasks**:  
+  Easily update task details or remove tasks from the list.  
+
+---
+
+## Technologies Used 🛠  
+- **Flutter**: A cross-platform framework for building mobile apps.  
+- **Dart**: The programming language used for Flutter development.  
+- **Cubit**: State management for efficient UI updates.  
+- **SQLite**: Local database for task storage.  
+
+---
+
+## How to Use 📲  
+1. **Sign Up / Log In**: Create an account or log in using your email and password.  
+2. **Add Tasks**: Create a new task by providing its details and priority.  
+3. **Organize Tasks**: Update task statuses and filter them based on your needs.  
+4. **Edit or Delete**: Modify task details or remove tasks as required.  
+
+---
+
+## Installation 🚀  
+1. Ensure you have [Flutter](https://flutter.dev/docs/get-started/install) installed.  
+2. Clone the repository:  
+   ```bash
+   git clone https://github.com/username/tasky.git
