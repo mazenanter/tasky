@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tasky/core/services/secure_storage.dart';
 import 'package:tasky/core/utils/app_routes.dart';
 import 'package:tasky/core/widgets/custom_art_image.dart';
 import 'package:tasky/core/widgets/custom_button.dart';
@@ -34,6 +35,7 @@ class OnboardViewBody extends StatelessWidget {
             height: height,
             onPressed: () {
               context.go(AppRoutes.kLoginView);
+              SecureStorage().save('onBoardDone');
             },
           ),
         ),

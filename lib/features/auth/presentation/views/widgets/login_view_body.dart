@@ -8,15 +8,17 @@ class LoginViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.sizeOf(context).height;
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const CustomArtImage(),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: BottomLoginBody(height: height),
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const CustomArtImage(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: BottomLoginBody(height: height),
+          ),
+        ],
+      ),
     );
   }
 }

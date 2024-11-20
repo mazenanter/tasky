@@ -8,4 +8,8 @@ abstract class AppColors {
   static const Color unSelectedTextColor = Color(0xff7C7C80);
   static const Color waitingColor = Color(0xffFFE4F2);
   static const Color waitingTextColor = Color(0xffFF7D53);
+  static const Color inProgressTextColor = Color(0xff5F33E1);
+  static const Color inProgressBackColor = Color(0xffF0ECFF);
+  static const Color finishedBackColor = Color(0xffE3F2FF);
+  static const Color finishedTextColor = Color(0xff0087FF);
 }
