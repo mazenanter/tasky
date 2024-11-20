@@ -37,7 +37,7 @@
 ---
 
 ## Installation 🚀  
-1. [tasky](https://drive.google.com/file/d/1wxlypLXoFM9eBLtOYEy-RFPPn5VWUEhM/view?usp=drive_link).  
+1. [tasky](https://drive.google.com/file/d/1ZMKuBPTRpstdfcvwa8xZYRHNSPaAcRZg/view?usp=drive_link).  
 2. Clone the repository:  
    ```bash
    git clone https://github.com/username/tasky.git
