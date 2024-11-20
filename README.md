@@ -4,10 +4,6 @@
 
 ---
 
-## Demo Video 🎥  
-Watch the demo video to see the app in action: [Click here to watch](https://drive.google.com/file/d/example-link/view?usp=sharing)  
-
----
 
 ## Features ✨  
 - **Add Tasks**:  
@@ -41,7 +37,7 @@ Watch the demo video to see the app in action: [Click here to watch](https://dri
 ---
 
 ## Installation 🚀  
-1. Ensure you have [Flutter](https://flutter.dev/docs/get-started/install) installed.  
+1. Ensure you have [Flutter](https://drive.google.com/file/d/1wxlypLXoFM9eBLtOYEy-RFPPn5VWUEhM/view?usp=drive_link) installed.  
 2. Clone the repository:  
    ```bash
    git clone https://github.com/username/tasky.git
